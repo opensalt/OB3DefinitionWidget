@@ -1,12 +1,11 @@
 <script setup>
-import {ref} from "vue";
 import AlignmentComponent from "@/components/AlignmentComponent.vue";
 
-const alignments = ref([]);
+const alignment = defineModel({ default: {} });
 </script>
 
 <template>
-  <AlignmentComponent />
+  <AlignmentComponent v-model="alignment"/>
 </template>
 
 <style scoped>

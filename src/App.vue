@@ -9,7 +9,7 @@ const credential = useCredentialStore();
   <main class="container">
     <CredentialMaker />
 
-    {{ credential.credential }}
+<!--    {{ credential.credential }}-->
   </main>
 </template>
 

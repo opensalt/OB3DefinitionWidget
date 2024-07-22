@@ -1,17 +1,15 @@
 <script setup>
 import AlignmentsComponent from "@/components/AlignmentsComponent.vue";
+import ResultDescription from "@/components/ResultDescription.vue";
+
+const model = defineModel({ default: {} });
 </script>
 
 <template>
     <div class="tab-pane fade show active" id="tab-alignments" role="tabpanel" aria-labelledby="alignments-tab">
-      <h3>Alignments</h3>
+      <ResultDescription v-model="model.resultDescription"/>
 
-      <div class="card">
-        <h5 class="card-header">Target 1</h5>
-        <div class="card-body">
-          <AlignmentsComponent />
-        </div>
-      </div>
+      <AlignmentsComponent v-model="model.alignment"/>
     </div>
 </template>
 

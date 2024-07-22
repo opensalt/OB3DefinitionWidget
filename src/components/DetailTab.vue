@@ -1,47 +1,68 @@
 <script setup>
-import { ref } from "vue";
-import { useCredentialStore } from "@/stores/credential";
-
-const credential = useCredentialStore();
+const credential = defineModel({ default: {
+  humanCode: null,
+  inLanguage: null,
+  version: null,
+  creditsAvailable: null,
+  additionalType: null,
+} })
 </script>
 
 <template>
-  <form>
     <div class="tab-pane fade show active" id="tab-detail" role="tabpanel" aria-labelledby="detail-tab">
-      <h3>Additional Details</h3>
+        <FormKit
+          type="text"
+          label="Human Code"
+          v-model="credential.humanCode"
+          name="humanCode"
+          help="The code, generally human readable, associated with an achievement."
+        />
 
-      <div class="mb-3">
-        <label for="humanCode" class="form-label">Human Code</label>
-        <input id="humanCode" type="text" class="form-control" required="required" v-model="credential.humanCode" @change="$emit('change', {'humanCode': credential.humanCode})">
-      </div>
+        <FormKit
+            type="text"
+            label="In Language"
+            v-model="credential.inLanguage"
+            name="inLanguage"
+            help="The language this credential is in as a BCP47 language code, such as 'en', 'en-US', or 'es-MX'"
+            :validation="[['matches', '/^[a-z]{2,4}(-[A-Z][a-z]{3})?(-([A-Z]{2}|[0-9]{3}))?$/']]"
+            :validation-messages="{
+              'matches': 'The language must formatted as a BCP47 language code, such as \'en\', \'en-US\', or \'es-MX\'.'
+            }"
+        />
 
-      <div class="mb-3">
-        <label for="inLanguage" class="form-label">Language</label>
-        <input id="inLanguage" type="text" class="form-control" required="required" v-model="credential.inLanguage" @change="$emit('change', {'inLanguage': credential.inLanguage})">
-      </div>
+        <FormKit
+            type="text"
+            label="Version"
+            v-model="credential.version"
+            name="version"
+            help="The version property allows issuers to set a version string for an Achievement. This is particularly useful when replacing a previous version with an update."
+        />
 
-      <div class="mb-3">
-        <label for="version" class="form-label">Version</label>
-        <input id="version" type="text" class="form-control" required="required" v-model="credential.version" @change="$emit('change', {'version': credential.version})">
-      </div>
+        <FormKit
+            type="number"
+            label="Credits Available"
+            number
+            name="creditsAvailable"
+            v-model="credential.creditsAvailable"
+            help="Credit hours associated with this entity, or credit hours possible. For example 3.0."
+        />
 
-      <div class="mb-3">
-        <label for="creditsAvailable" class="form-label">Credits Available</label>
-        <input id="creditsAvailable" type="text" class="form-control" required="required" v-model.number="credential.creditsAvailable" @change="$emit('change', {'version': credential.creditsAvailable})">
-      </div>
+        <FormKit
+            type="text"
+            label="Specialization"
+            v-model="credential.specialization"
+            name="specialization"
+            help="Name given to the focus, concentration, or specific area of study defined in the achievement. Examples include 'Entrepreneurship', 'Technical Communication', and 'Finance'."
+        />
 
-      <div class="mb-3">
-        <label for="specialization" class="form-label">Specialization</label>
-        <input id="specialization" type="text" class="form-control" required="required" v-model="credential.specialization" @change="$emit('change', {'version': credential.specialization})">
-      </div>
-
-      <div class="mb-3">
-        <label for="fieldOfStudy" class="form-label">Field of Study</label>
-        <input id="fieldOfStudy" type="text" class="form-control" required="required" v-model="credential.fieldOfStudy" @change="$emit('change', {'version': credential.fieldOfStudy})">
-      </div>
-
+        <FormKit
+            type="text"
+            label="Field of Study"
+            v-model="credential.fieldOfStudy"
+            name="fieldOfStudy"
+            help="Category, subject, area of study, discipline, or general branch of knowledge. Examples include Business, Education, Psychology, and Technology."
+        />
     </div>
-  </form>
 </template>
 
 <style scoped>

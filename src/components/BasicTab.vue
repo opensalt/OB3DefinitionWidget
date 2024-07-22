@@ -1,32 +1,46 @@
 <script setup>
-import {useCredentialStore} from "@/stores/credential";
 import CredentialImage from "@/components/CredentialImage.vue";
 import CredentialType from "@/components/CredentialType.vue";
 import CredentialCriteria from "@/components/CredentialCriteria.vue";
 
-const credential = useCredentialStore();
+const model = defineModel({ default: {
+/*  name: '',
+  achievementType: null,
+  image: null,
+  description: '',
+  criteria: { },*/
+} });
 </script>
 
 <template>
-  <form>
     <div class="tab-pane fade show active" id="tab-basic" role="tabpanel" aria-labelledby="basic-tab">
-      <h3>General Information</h3>
+      <FormKit
+          type="text"
+          label="Credential Name"
+          name="name"
+          wrapper-class="required"
+          validation="required:trim"
+          v-model="model.name"
+          help="The name of the achievement."
+      />
 
-      <div class="mb-3">
-        <label for="credentialName" class="form-label">Credential Name</label>
-        <input id="credentialName" type="text" class="form-control" required="required" v-model="credential.name">
-      </div>
+      <CredentialType v-model="model.achievementType" />
+      <CredentialImage v-model="model.image"/>
 
-      <CredentialType />
-      <CredentialImage />
+      <FormKit
+          type="textarea"
+          label="Description"
+          name="description"
+          wrapper-class="required"
+          rows="5"
+          validation="required:trim"
+          v-model="model.description"
+          help="A short description of the achievement."
+      />
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea id="description" class="form-control" rows="5" v-model="credential.description"></textarea>
-      </div>
-
-      <CredentialCriteria/>
+      <CredentialCriteria
+          v-model="model.criteria"
+      />
     </div>
-  </form>
 </template>
 

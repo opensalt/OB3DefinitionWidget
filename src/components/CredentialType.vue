@@ -1,56 +1,110 @@
 <script setup>
-import {useCredentialStore} from "@/stores/credential";
+import {onMounted, ref, watch} from "vue";
 
-const credential = useCredentialStore();
+const model = defineModel({ default: ''});
+const achievementType = ref('');
+const typeExt = ref('');
+
+onMounted(() => {
+  if (model.value && model.value.substring(0, 4) === 'ext:') {
+    achievementType.value = 'other';
+    typeExt.value = model.value.substring(4);
+
+    return;
+  }
+
+  achievementType.value = model.value ? model.value : '';
+  typeExt.value = '';
+});
+
+watch(achievementType, (value) => {
+  if (value === 'other') {
+    model.value = 'ext:'+typeExt.value;
+
+    return;
+  }
+
+  model.value = value;
+});
+
+watch(typeExt, (value) => {
+  if (achievementType.value === 'other') {
+    model.value = 'ext:'+value;
+
+    return;
+  }
+
+  model.value = achievementType.value;
+});
 </script>
 
 <template>
-  <div class="mb-3">
-    <label for="credentialType" class="form-label">Credential Type</label>
-    <select id="credentialType" class="form-select" aria-label="Credential Type" v-model="credential.type">
-      <option value="Achievement">Achievement</option>
-      <option value="ApprenticeshipCertificate">Apprenticeship Certificate</option>
-      <option value="Assessment">Assessment</option>
-      <option value="Assignment">Assignment</option>
-      <option value="AssociateDegree">Associate Degree</option>
-      <option value="Award">Award</option>
-      <option value="Badge">Badge</option>
-      <option value="BachelorDegree">Bachelor Degree</option>
-      <option value="Certificate">Certificate</option>
-      <option value="CertificateOfCompletion">Certificate Of Completion</option>
-      <option value="Certification">Certification</option>
-      <option value="CommunityService">Community Service</option>
-      <option value="Competency">Competency</option>
-      <option value="Course">Course</option>
-      <option value="CoCurricular">Co-Curricular</option>
-      <option value="Degree">Degree</option>
-      <option value="Diploma">Diploma</option>
-      <option value="DoctoralDegree">Doctoral Degree</option>
-      <option value="Fieldwork">Fieldwork</option>
-      <option value="GeneralEducationDevelopment">General Education Development</option>
-      <option value="JourneymanCertificate">Journeyman Certificate</option>
-      <option value="LearningProgram">Learning Program</option>
-      <option value="License">License</option>
-      <option value="Membership">Membership</option>
-      <option value="ProfessionalDoctorate">Professional Doctorate</option>
-      <option value="QualityAssuranceCredential">Quality Assurance Credential</option>
-      <option value="MasterCertificate">Master Certificate</option>
-      <option value="MasterDegree">Master Degree</option>
-      <option value="MicroCredential">Micro Credential</option>
-      <option value="ResearchDoctorate">Research Doctorate</option>
-      <option value="SecondarySchoolDiploma">Secondary School Diploma</option>
-      <option value="other">Other (ext:)</option>
-    </select>
-    <div v-if="credential.type === 'other'" class="mt-3">
-      <label for="credentialTypeExt" class="form-label ms-3 pe-3 visually-hidden">Extended Type</label>
-      <div class="input-group mb-3 ms-3 pe-3">
-        <span class="input-group-text" id="extended-prefix">ext:</span>
-        <input type="text" id="credentialTypeExt" class="form-control" aria-label="Extended Credential Type" v-model="credential.typeExt">
-      </div>
-    </div>
-  </div>
+  <FormKit
+      type="select"
+      label="Credential Type"
+      v-model="achievementType"
+      name="achievementType"
+      input-class="$reset formkit-input form-select"
+      placeholder="Select the Credential Type"
+      help="The type of the credential"
+      :options="{
+        '': '',
+        'Achievement': 'Achievement',
+        'ApprenticeshipCertificate': 'Apprenticeship Certificate',
+        'Assessment': 'Assessment',
+        'Assignment': 'Assignment',
+        'AssociateDegree': 'Associate Degree',
+        'Award': 'Award',
+        'Badge': 'Badge',
+        'BachelorDegree': 'Bachelor Degree',
+        'Certificate': 'Certificate',
+        'CertificateOfCompletion': 'Certificate Of Completion',
+        'Certification': 'Certification',
+        'CommunityService': 'Community Service',
+        'Competency': 'Competency',
+        'Course': 'Course',
+        'CoCurricular': 'Co-Curricular',
+        'Degree': 'Degree',
+        'Diploma': 'Diploma',
+        'DoctoralDegree': 'Doctoral Degree',
+        'Fieldwork': 'Fieldwork',
+        'GeneralEducationDevelopment': 'General Education Development',
+        'JourneymanCertificate': 'Journeyman Certificate',
+        'LearningProgram': 'Learning Program',
+        'License': 'License',
+        'Membership': 'Membership',
+        'ProfessionalDoctorate': 'Professional Doctorate',
+        'QualityAssuranceCredential': 'Quality Assurance Credential',
+        'MasterCertificate': 'Master Certificate',
+        'MasterDegree': 'Master Degree',
+        'MicroCredential': 'Micro Credential',
+        'ResearchDoctorate': 'Research Doctorate',
+        'SecondarySchoolDiploma': 'Secondary School Diploma',
+        'other': 'Other (ext:)',
+      }"
+  />
+  <FormKit
+      v-if="achievementType === 'other'"
+      type="innerLabelTextInput"
+      label="Extended Type"
+      v-model="typeExt"
+      name="typeExt"
+      aria-label="Extended Alignment Type"
+      inner-class="input-group ms-3 me-5 pe-3"
+      outer-class="$reset"
+      label-class="visually-hidden"
+      before="ext:"
+      :validation="[['matches', '/^[a-z|A-Z|0-9|.|-|_]+$/'], ['required']]"
+      help="Extended value for Credential Type"
+  >
+    <template #prefix>
+      <span class="input-group-text" aria-label="ext:">ext:</span>
+    </template>
+  </FormKit>
 </template>
 
 <style scoped>
-
+[data-placeholder="true"] {
+  color: #999;
+}
 </style>

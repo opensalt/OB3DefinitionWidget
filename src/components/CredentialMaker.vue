@@ -1,22 +1,40 @@
 <script setup>
-import {ref} from "vue";
+import {reactive, ref, watch} from "vue";
+import {useCredentialStore} from "@/stores/credential.js";
 import BasicTab from "@/components/BasicTab.vue";
 import DetailTab from "@/components/DetailTab.vue";
-import {useCredentialStore} from "@/stores/credential.js";
-import ResultDescription from "@/components/ResultDescription.vue";
-import AlignmentComponent from "@/components/AlignmentComponent.vue";
 import AlignmentsTab from "@/components/AlignmentsTab.vue";
+import AdditionalTab from "@/components/AdditionalTab.vue";
 
 const tab = ref("basic");
+const submitted = ref(false);
+
+const formData = reactive({
+  basic: {},
+  detail: {},
+  alignments: {},
+  additional: {},
+});
 
 const credential = useCredentialStore();
+
+watch(formData, (value) => {
+  Object.assign(credential, value.basic);
+  Object.assign(credential, value.detail);
+  Object.assign(credential, value.alignments);
+  Object.assign(credential, value.additional);
+});
 
 function selectTab(selected) {
   tab.value = selected;
 }
 
-function save() {
-  console.log('Submitting');
+function save(formData) {
+  console.log('Submitting', formData);
+}
+
+function showErrors(node) {
+  submitted.value = true;
 }
 </script>
 
@@ -38,28 +56,58 @@ function save() {
     </ul>
 
     <div class="tab-content mt-3" id="tab-content">
-      <form @submit.prevent="save">
-        <BasicTab v-show="tab === 'basic'"/>
-        <DetailTab v-show="tab === 'detail'"/>
-        <AlignmentsTab v-show="tab === 'alignments'"/>
-
-        <div v-show="tab === 'additional'">
-          <ul>
-            <li>alignment</li>
-            <li>creator</li>
-            <li>related</li>
-            <li>resultDescription</li>
-            <li>tag</li>
-            <li>otherIdentifier</li>
-            <li>id</li>
-          </ul>
-
-          <ResultDescription/>
+      <FormKit
+          type="form"
+          :actions="false"
+          @submit="save"
+          @submit-invalid="showErrors"
+          #default="{ state: { valid } }"
+          validation-visibility="live"
+      >
+        <div class="alert alert-warning" role="alert" v-if="!valid && submitted">
+          There are some errors in the form submission.  Please fix the errors before submitting the form.
         </div>
 
-        <button class="btn btn-primary float-end mt-3" type="submit" :disabled="!credential.hasRequired">Save</button>
-      </form>
+        <FormKit
+            type="hidden"
+            name="@context"
+            :value="[ 'https://www.w3.org/2018/credentials/v2', 'https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json' ]"
+        />
+
+        <FormKit
+          type="hidden"
+          name="type"
+          :value="[ 'Achievement' ]"
+        />
+
+        <BasicTab
+            v-model="formData.basic"
+            v-show="tab === 'basic'"
+        />
+        <DetailTab
+            v-model="formData.detail"
+            v-show="tab === 'detail'"
+        />
+        <AlignmentsTab
+            v-model="formData.alignments"
+            v-show="tab === 'alignments'"
+        />
+        <AdditionalTab
+            v-model="formData.additional"
+            v-show="tab === 'additional'"
+        />
+
+        <button class="btn btn-primary float-end mt-5" type="submit" :disabled="false">Save</button>
+      </FormKit>
     </div>
   </div>
 </template>
 
+<style>
+.formkit-wrapper.required .form-label:before{
+   color: red;
+   content: "*";
+   position: absolute;
+   margin-left: -10px;
+}
+</style>
