@@ -30,7 +30,7 @@ const alignment = defineModel({ default: {} });
           </button>
         </h5>
 
-        <div class="card-body">
+        <div class="card-body pb-0">
           <FormKit
               type="hidden"
               name="type"

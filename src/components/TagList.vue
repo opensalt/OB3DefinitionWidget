@@ -45,6 +45,7 @@ watch(values, (newValues) => {
               :index="index"
               :validation-rules="{ distinct }"
               validation="required:trim|distinct"
+              placeholder="Enter tag"
               :validation-messages="{
                 'required': 'Value is required',
                 'distinct': 'The tags must be distinct',

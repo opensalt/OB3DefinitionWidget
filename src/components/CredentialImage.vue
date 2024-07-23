@@ -82,6 +82,7 @@ function handleImage(e) {
       type="file"
       accept="image/png, image/svg+xml"
       :help="props.help"
+      inner-class=""
       @input="handleImage"
       ignore="true"
     >

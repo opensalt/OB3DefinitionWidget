@@ -30,7 +30,6 @@ const creatorIs=ref('noCreator');
       name="creator"
       v-model="creator"
       v-if="creatorIs !== 'noCreator'"
-      ignore="true"
     >
       <div class="card-body">
         <FormKit

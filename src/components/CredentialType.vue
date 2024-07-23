@@ -45,10 +45,11 @@ watch(typeExt, (value) => {
       v-model="achievementType"
       name="achievementType"
       input-class="$reset formkit-input form-select"
+      inner-class=""
       placeholder="Select the Credential Type"
       help="The type of the credential"
       :options="{
-        '': '',
+        '': 'Select the Credential Type',
         'Achievement': 'Achievement',
         'ApprenticeshipCertificate': 'Apprenticeship Certificate',
         'Assessment': 'Assessment',

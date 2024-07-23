@@ -1,6 +1,5 @@
 <script setup>
 import {ref, watch} from "vue";
-import {useCredentialStore} from "@/stores/credential";
 
 const emit = defineEmits(['change']);
 
@@ -41,7 +40,7 @@ watch(related, (newRelated) => {
           </button>
         </h5>
 
-        <div class="card-body">
+        <div class="card-body pb-0">
           <FormKit
               type="hidden"
               name="type"

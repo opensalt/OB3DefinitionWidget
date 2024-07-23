@@ -22,8 +22,8 @@ function selectTab(tab) {
 </script>
 
 <template>
-  <div class="required">
-    <h5 class="form-label">Earning Criteria</h5>
+  <div class="formkit-wrapper required">
+    <label class="form-label">Earning Criteria</label>
   </div>
 
   <ul class="nav nav-tabs" role="tablist">
@@ -65,7 +65,7 @@ function selectTab(tab) {
 
     <div class="tab-pane fade" :class="{'show': (criteriaTab === 'preview'), 'active': (criteriaTab === 'preview')}"
          id="criteria-preview" role="tabpanel" aria-labelledby="preview-tab" v-show="criteriaTab === 'preview'">
-      <h5 class="mt-3">Criteria Preview</h5>
+      <label class="mt-3 mb-2">Narrative Preview</label>
       <MarkdownRenderer :source="preview" class="border rounded p-3"/>
     </div>
   </div>

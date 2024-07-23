@@ -14,6 +14,15 @@ const model = defineModel({ default: {
 
 <template>
     <div class="tab-pane fade show active" id="tab-basic" role="tabpanel" aria-labelledby="basic-tab">
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="mb-0">
+            This tab contains all of the required fields for a credential.<br/>
+            <em>Credential Type</em> and <em>Image</em> are not required, but it is suggested that all credentials have them.
+          </p>
+        </div>
+      </div>
+
       <FormKit
           type="text"
           label="Credential Name"
@@ -21,7 +30,7 @@ const model = defineModel({ default: {
           wrapper-class="required"
           validation="required:trim"
           v-model="model.name"
-          help="The name of the achievement."
+          help="The name of the credential."
       />
 
       <CredentialType v-model="model.achievementType" />

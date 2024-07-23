@@ -40,19 +40,26 @@ watch(values, (newValues) => {
         An ordered list of allowed values. The values should be ordered from low to high as determined by the achievement creator.
       </p>
 
-      <div class="ms-5 mb-3 p-3 border rounded" v-if="items.length > 0">
+      <div class="ms-5 mb-3 p-3 border rounded col-md-8" v-if="items.length > 0">
         <div v-for="(item, index) in items" :key="item" class="value-item">
           <FormKit
-              type="text"
+              type="innerLabelTextInput"
               :index="index"
+              inner-class="input-group"
+              label-class="input-group-text"
               :validation-rules="{ distinct }"
               validation="required:trim|distinct"
               :validation-messages="{
-                'required': 'Value is required',
-                'distinct': 'The values must be distinct',
+                'required': 'A value is required.',
+                'distinct': 'The values must all be different.',
               }"
               outer-class="$reset"
-          />
+              :aria-label="'Allowed value '+(index+1)"
+          >
+            <template #label="context">
+              <label :class="context.classes.label">{{ index + 1 }}</label>
+            </template>
+          </FormKit>
           <ul class="controls mt-2">
             <li>
               <button
