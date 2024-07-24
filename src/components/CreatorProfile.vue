@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from "vue";
 import AddressComponent from "@/components/AddressComponent.vue";
-import CredentialImage from "@/components/CredentialImage.vue";
+import CredentialImage from "@/components/AchievementImage.vue";
 import OtherIdentifiers from "@/components/OtherIdentifiers.vue";
 
 const creator=defineModel({ default: {} });

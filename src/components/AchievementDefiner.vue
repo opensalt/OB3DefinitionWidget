@@ -5,7 +5,7 @@ import DetailTab from "@/components/DetailTab.vue";
 import AlignmentsTab from "@/components/AlignmentsTab.vue";
 import AdditionalTab from "@/components/AdditionalTab.vue";
 
-const emit = defineEmits(['saveCredential']);
+const emit = defineEmits(['saveDefinition']);
 
 const tab = ref("basic");
 const submitted = ref(false);
@@ -18,13 +18,13 @@ const formData = reactive({
   additional: {},
 });
 
-const credential = reactive({});
+const achievement = reactive({});
 
 watch(formData, (value) => {
-  Object.assign(credential, value.basic);
-  Object.assign(credential, value.detail);
-  Object.assign(credential, value.alignments);
-  Object.assign(credential, value.additional);
+  Object.assign(achievement, value.basic);
+  Object.assign(achievement, value.detail);
+  Object.assign(achievement, value.alignments);
+  Object.assign(achievement, value.additional);
 });
 
 function selectTab(selected) {
@@ -46,9 +46,9 @@ function removeEmpty(obj) {
 
 function save(formData) {
   const cleaned = removeEmpty(formData);
-  emit('saveCredential', cleaned);
+  //emit('saveDefinition', cleaned);
   const formEl = document.getElementById(form.value.node.props.id);
-  formEl.dispatchEvent(new CustomEvent('saveCredential', { bubbles: true, detail: JSON.stringify(cleaned) }));
+  formEl.dispatchEvent(new CustomEvent('saveDefinition', { bubbles: true, detail: JSON.stringify(cleaned) }));
   //console.log('Submitting', cleaned);
 }
 
@@ -58,8 +58,8 @@ function showErrors(node) {
 </script>
 
 <template>
-  <div class="clearfix">
-    <ul class="nav nav-tabs col-md-6" role="tablist">
+  <div class="clearfix col-md-6">
+    <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link" :class='{"active": (tab === "basic")}' type="button" id="basic-tab" role="tab" aria-controls="tab-basic" :aria-selected="(tab === 'basic') ? 'true' : 'false'" @click="selectTab('basic')">Primary Details</button>
       </li>
@@ -74,7 +74,7 @@ function showErrors(node) {
       </li>
     </ul>
 
-    <div class="tab-content mt-3 col-md-6" id="tab-content">
+    <div class="tab-content mt-3" id="tab-content">
       <FormKit
           type="form"
           :actions="false"
@@ -85,7 +85,7 @@ function showErrors(node) {
           validation-visibility="live"
       >
         <div class="alert alert-warning" role="alert" v-if="!valid && submitted">
-          There are some errors in the form submission.  Please fix the errors before submitting the form.
+          There are some errors in the form submission.  Please correct the errors and then resubmit the form.
         </div>
 
         <FormKit

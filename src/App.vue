@@ -1,5 +1,5 @@
 <script setup>
-import CredentialMaker from "@/components/CredentialMaker.vue";
+import CredentialMaker from "@/components/AchievementDefiner.vue";
 </script>
 
 <template>

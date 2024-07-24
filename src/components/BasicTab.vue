@@ -1,7 +1,7 @@
 <script setup>
-import CredentialImage from "@/components/CredentialImage.vue";
-import CredentialType from "@/components/CredentialType.vue";
-import CredentialCriteria from "@/components/CredentialCriteria.vue";
+import CredentialImage from "@/components/AchievementImage.vue";
+import CredentialType from "@/components/AchievementType.vue";
+import CredentialCriteria from "@/components/AchievementCriteria.vue";
 
 const model = defineModel({ default: {
 /*  name: '',

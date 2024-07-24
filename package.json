@@ -1,5 +1,5 @@
 {
-  "name": "maker",
+  "name": "ob3-definer",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -16,7 +16,6 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "markdown-it": "^14.1.0",
-    "pinia": "^2.1.7",
     "uuid": "^10.0.0",
     "vue": "^3.4.29"
   },

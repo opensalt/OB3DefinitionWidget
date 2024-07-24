@@ -1,15 +1,15 @@
 //import "bootstrap/dist/css/bootstrap.min.css";
 //import "bootstrap";
 //import './assets/main.css'
-import './assets/style.scss';
+//import './assets/style.scss';
 
 import { createApp } from 'vue';
+import App from './App.vue';
 import { plugin, defaultConfig } from "@formkit/vue";
 import customConfig from '../formkit.config.js';
 import { innerLabelTextInput } from '@/inputs/innerLabelTextInput.js';
 import { innerLabelTextareaInput } from '@/inputs/innerLabelTextareaInput.js';
 import { selectInputGroup } from '@/inputs/selectInputGroup.js';
-import App from './App.vue';
 
 const app = createApp(App);
 app.use(plugin, defaultConfig({
@@ -20,4 +20,4 @@ app.use(plugin, defaultConfig({
         selectInputGroup,
     },
 }));
-app.mount('#app');
+app.mount('#ob3-definer');
