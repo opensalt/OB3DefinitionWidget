@@ -1,10 +1,10 @@
 <script setup>
-import CredentialMaker from "@/components/AchievementDefiner.vue";
+import AchievementDefiner from "@/components/AchievementDefiner.vue";
 </script>
 
 <template>
   <main class="container">
-    <CredentialMaker />
+    <AchievementDefiner />
   </main>
 </template>
 

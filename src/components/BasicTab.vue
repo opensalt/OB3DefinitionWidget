@@ -1,7 +1,7 @@
 <script setup>
-import CredentialImage from "@/components/AchievementImage.vue";
-import CredentialType from "@/components/AchievementType.vue";
-import CredentialCriteria from "@/components/AchievementCriteria.vue";
+import AchievementImage from "@/components/AchievementImage.vue";
+import AchievementType from "@/components/AchievementType.vue";
+import AchievementCriteria from "@/components/AchievementCriteria.vue";
 
 const model = defineModel({ default: {
 /*  name: '',
@@ -33,8 +33,8 @@ const model = defineModel({ default: {
           help="The name of the credential."
       />
 
-      <CredentialType v-model="model.achievementType" />
-      <CredentialImage v-model="model.image"/>
+      <AchievementType v-model="model.achievementType" />
+      <AchievementImage v-model="model.image"/>
 
       <FormKit
           type="textarea"
@@ -47,7 +47,7 @@ const model = defineModel({ default: {
           help="A short description of the achievement."
       />
 
-      <CredentialCriteria
+      <AchievementCriteria
           v-model="model.criteria"
       />
     </div>
