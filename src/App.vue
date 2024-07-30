@@ -1,5 +1,6 @@
 <script setup>
 import AchievementDefiner from "@/components/AchievementDefiner.vue";
+import {onBeforeMount} from "vue";
 
 const props = defineProps({
   achievement: {
@@ -8,10 +9,13 @@ const props = defineProps({
   }
 });
 
-try {
-  const a1 = document.getElementById('ob3-definer').dataset;
-  props.achievement = a1.achievement || '';
-} catch (e) {}
+onBeforeMount(() => {
+  try {
+    const a1 = document.getElementById('ob3-definer').dataset;
+    props.achievement = a1.achievement || '';
+  } catch(e) {
+  }
+});
 </script>
 
 <template>
