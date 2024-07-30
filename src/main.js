@@ -11,7 +11,8 @@ import { innerLabelTextInput } from '@/inputs/innerLabelTextInput.js';
 import { innerLabelTextareaInput } from '@/inputs/innerLabelTextareaInput.js';
 import { selectInputGroup } from '@/inputs/selectInputGroup.js';
 
-const app = createApp(App);
+const mountEl = document.querySelector('#ob3-definer');
+const app = createApp(App, { ...mountEl.dataset });
 app.use(plugin, defaultConfig({
     config: customConfig.config,
     inputs: {
@@ -21,3 +22,5 @@ app.use(plugin, defaultConfig({
     },
 }));
 app.mount('#ob3-definer');
+
+export default app;
