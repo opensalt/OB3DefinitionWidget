@@ -1,11 +1,14 @@
 <script setup>
-import {ref, watch} from "vue";
+import {onBeforeMount, ref, watch} from "vue";
 import {FormKitIcon} from '@formkit/vue'
 import {vAutoAnimate} from '@formkit/auto-animate'
 
 const values = ref([]);
 const model = defineModel({ default: [] });
 
+onBeforeMount(() => {
+  values.value = model.value;
+});
 function distinct(node) {
   // 👀 use node traversal to get the parent node
   const parent = node.at('$parent')

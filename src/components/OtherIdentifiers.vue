@@ -14,7 +14,7 @@ const identifiers = defineModel({ default: [] });
       #default="{ items, node, value }"
       type="list"
       v-model="identifiers"
-      name="identifier"
+      name="otherIdentifier"
       dynamic
   >
     <h5>Other Identifiers

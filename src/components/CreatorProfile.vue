@@ -1,11 +1,26 @@
 <script setup>
-import {ref} from "vue";
+import {onBeforeMount, ref} from "vue";
 import AddressComponent from "@/components/AddressComponent.vue";
 import CredentialImage from "@/components/AchievementImage.vue";
 import OtherIdentifiers from "@/components/OtherIdentifiers.vue";
 
 const creator=defineModel({ default: {} });
 const creatorIs=ref('noCreator');
+
+onBeforeMount(() => {
+  if (Object.keys(creator.value).length === 0) {
+    creator.value = 'noCreator';
+
+    return;
+  }
+
+  // Default to organization
+  creatorIs.value = 'organization';
+
+  if (creator.value.dateOfBirth || null) {
+    creatorIs.value = 'individual';
+  }
+});
 </script>
 
 <template>

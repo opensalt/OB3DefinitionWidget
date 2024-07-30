@@ -1,10 +1,16 @@
 <script setup>
-import {reactive, ref, watch} from "vue";
+import {onBeforeMount, reactive, ref, watch} from "vue";
 import BasicTab from "@/components/BasicTab.vue";
 import DetailTab from "@/components/DetailTab.vue";
 import AlignmentsTab from "@/components/AlignmentsTab.vue";
 import AdditionalTab from "@/components/AdditionalTab.vue";
 
+const props = defineProps({
+  achievement: {
+    type: String,
+    default: ""
+  }
+});
 const emit = defineEmits(['saveDefinition']);
 
 const tab = ref("basic");
@@ -12,19 +18,61 @@ const submitted = ref(false);
 const form = ref(null);
 
 const formData = reactive({
+  type: ['Achievement'],
   basic: {},
   detail: {},
   alignments: {},
   additional: {},
 });
 
-const achievement = reactive({});
+const achievementData = reactive({});
+
+onBeforeMount(() => {
+  try {
+    const achievement = JSON.parse(props.achievement);
+
+    formData.basic = {
+      name: achievement.name || '',
+      achievementType: achievement.achievementType || null,
+      image: achievement.image || {},
+      description: achievement.description || '',
+      criteria: achievement.criteria || {},
+    };
+    formData.detail = {
+      humanCode: achievement.humanCode || null,
+      inLanguage: achievement.inLanguage || null,
+      version: achievement.version || null,
+      creditsAvailable: achievement.creditsAvailable || null,
+      specialization: achievement.specialization || null,
+      fieldOfStudy: achievement.fieldOfStudy || null,
+    };
+    formData.alignments = {
+      resultDescription: achievement.resultDescription || [],
+      alignment: achievement.alignment || [],
+    };
+    formData.additional = {
+      id: achievement.id || null,
+      tag: achievement.tag || [],
+      related: achievement.related || [],
+      otherIdentifier: achievement.otherIdentifier || [],
+      creator: achievement.creator || {},
+    };
+    /*
+    achievementData.basic = {...achievement.basic };
+    achievementData.detail = {...achievement.detail };
+    achievementData.alignments = {...achievement.alignments };
+    achievementData.additional = {...achievement.additional };
+     */
+  } catch (e) {
+    // No valid OB3 Achievement definition was passed
+  }
+});
 
 watch(formData, (value) => {
-  Object.assign(achievement, value.basic);
-  Object.assign(achievement, value.detail);
-  Object.assign(achievement, value.alignments);
-  Object.assign(achievement, value.additional);
+  Object.assign(achievementData, value.basic);
+  Object.assign(achievementData, value.detail);
+  Object.assign(achievementData, value.alignments);
+  Object.assign(achievementData, value.additional);
 });
 
 function selectTab(selected) {
@@ -97,6 +145,7 @@ function showErrors(node) {
         <FormKit
           type="hidden"
           name="type"
+          v-model="formData.type"
           :value="[ 'Achievement' ]"
         />
 

@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref, watch} from "vue";
+import {onBeforeMount, onMounted, ref, watch} from "vue";
 
 const props = defineProps({
   help: {
@@ -13,10 +13,10 @@ const emit = defineEmits(['update:modelValue']);
 const image = ref('');
 const caption = ref('');
 
-onMounted(() => {
+onBeforeMount(() => {
   // console.log('Mounted', model.value);
-  image.value = model.value.id;
-  caption.value = model.value.caption;
+  image.value = model.value.id || null;
+  caption.value = model.value.caption || null;
 })
 
 watch(caption, (newCaption) => {

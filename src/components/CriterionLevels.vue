@@ -45,7 +45,7 @@ const levels = defineModel({ default: {} });
               name="id"
               inner-class="input-group"
               label-class="input-group-text"
-              validation="required:trim|url"
+              validation="required:trim"
               wrapper-class="required"
           />
 

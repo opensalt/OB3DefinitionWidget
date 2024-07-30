@@ -8,6 +8,9 @@ The widget can be added to an HTML page by adding a div element with
 the id `ob3-definer` as a placeholder and including the javascript and
 css files from the `dist` folder.
 
+To edit an existing achievement definition, pass the definition as a
+JSON string in an attribute called `data-achievement`.
+
 When the save button is clicked in the widget a `saveDefinition` event
 will be triggered with the JSON representation of the achievement
 definition as the detail of the event.
@@ -30,7 +33,7 @@ Example web page with the widget:
     <link rel="stylesheet" crossorigin href="/ob3-definer.css">
   </head>
   <body>
-    <div id="ob3-definer"></div>
+    <div id="ob3-definer" data-achievement='{}'></div>
   </body>
 </html>
 ```

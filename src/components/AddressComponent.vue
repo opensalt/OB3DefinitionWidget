@@ -1,8 +1,14 @@
 <script setup>
-import {ref} from "vue";
+import {onBeforeMount, ref} from "vue";
 
 const model = defineModel({ default: {} });
 const show = ref(false);
+
+onBeforeMount(() => {
+  if (Object.keys(model).length > 0) {
+    show.value = true;
+  }
+});
 </script>
 
 <template>
