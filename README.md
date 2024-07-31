@@ -4,12 +4,25 @@ Open Badge v3 Definition Widget
 This widget provides a simple form to create an Open Badge v3 achievement
 definition.
 
+
+Usage
+-----
+
 The widget can be added to an HTML page by adding a div element with
 the id `ob3-definer` as a placeholder and including the javascript and
 css files from the `dist` folder.
 
 To edit an existing achievement definition, pass the definition as a
 JSON string in an attribute called `data-achievement`.
+
+**Note** that the widget does not require the `id` field to be entered
+in order for the widget to consider the definition *valid* as many use
+cases will require specific types of ids (such as a known URL created
+by the application that embeds the widget).
+
+
+Custom Events
+-------------
 
 When the save button is clicked in the widget a `saveDefinition` event
 will be triggered with the JSON representation of the achievement
@@ -32,6 +45,10 @@ The widget is styled using Bootstrap v5 CSS.  To avoid issues with
 styling on the rest of the page, it is expected that the Bootstrap CSS
 is loaded into the page and thus is not part of the stylesheet provided
 with this widget.
+
+
+Example
+-------
 
 Example web page with the widget:
 ```html
