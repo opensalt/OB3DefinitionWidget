@@ -100,6 +100,18 @@ function save(formData) {
   //console.log('Submitting', cleaned);
 }
 
+function sendChange(formData) {
+  try {
+    const formEl = document.getElementById(form.value.node.props.id);
+    const valid = form.value.node.context.state.valid;
+    const cleaned = removeEmpty(form.value.node.value);
+    formEl.dispatchEvent(new CustomEvent('changed', {bubbles: true, detail: JSON.stringify(cleaned)}));
+    if (valid) {
+      formEl.dispatchEvent(new CustomEvent('updated', {bubbles: true, detail: JSON.stringify(cleaned)}));
+    }
+  } catch (e) {}
+}
+
 function showErrors(node) {
   submitted.value = true;
 }
@@ -129,6 +141,7 @@ function showErrors(node) {
           ref="form"
           @submit="save"
           @submit-invalid="showErrors"
+          @change="sendChange"
           #default="{ state: { valid } }"
           validation-visibility="live"
       >
