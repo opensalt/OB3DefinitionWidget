@@ -10,9 +10,9 @@ const props = defineProps({
 </script>
 
 <template>
-  <main class="container">
+  <div class="container">
     <AchievementDefiner :achievement="achievement"/>
-  </main>
+  </div>
 </template>
 
 <style scoped>

@@ -8,12 +8,19 @@ definition.
 Usage
 -----
 
-The widget can be added to an HTML page by adding a div element with
-the id `ob3-definer` as a placeholder and including the javascript and
-css files from the `dist` folder.
+The widget can be added to an HTML page by
+  1. adding a div element as a placeholder (*ob3-definer* is the default id looked for)
+  2. including the javascript and css files from the `dist` folder
+  3. dispatching an `ob3-open` custom event
+     - Optionally one can pass a selector in the detail of the event to use a different
+       div than *#ob3-definer* (see example below)
+
+The widget can be removed from the HTML page by dispatching an `ob3-close` event.
 
 To edit an existing achievement definition, pass the definition as a
-JSON string in an attribute called `data-achievement`.
+JSON string in an attribute called `data-achievement` on the placeholder
+div or by adding the JSON (as a string or JSON object) to the detail of the
+ob3-open event as the property `achievement`.
 
 **Note** that the widget does not require the `id` field to be entered
 in order for the widget to consider the definition *valid* as many use
@@ -64,6 +71,11 @@ Example web page with the widget:
   </head>
   <body>
     <div id="ob3-definer" data-achievement='{}'></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        window.dispatchEvent(new CustomEvent('ob3-open', {'detail': {'selector': '#ob3-definer'}})); // the detail payload here is optional
+      })
+    </script>
   </body>
 </html>
 ```

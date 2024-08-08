@@ -118,7 +118,7 @@ function showErrors(node) {
 </script>
 
 <template>
-  <div class="clearfix col-md-6">
+  <div>
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link" :class='{"active": (tab === "basic")}' type="button" id="basic-tab" role="tab" aria-controls="tab-basic" :aria-selected="(tab === 'basic') ? 'true' : 'false'" @click="selectTab('basic')">Primary Details</button>
