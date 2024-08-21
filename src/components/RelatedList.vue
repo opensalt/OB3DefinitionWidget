@@ -16,7 +16,7 @@ watch(related, (newRelated) => {
       #default="{ items, node, value }"
       type="list"
       v-model="related"
-      name="alignment"
+      name="related"
       dynamic
   >
     <h5>Related Credentials
