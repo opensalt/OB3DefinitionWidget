@@ -49,14 +49,14 @@ function selectTab(tab) {
           label="Narrative"
           name="narrative"
           rows="5"
-          validation="require_one:url"
+          validation="require_one:id"
           help="A narrative of what is needed to earn the credential. Markdown is allowed."
           />
 
         <FormKit
           type="text"
           label="Criteria URL"
-          name="url"
+          name="id"
           validation="require_one:narrative|url"
           help="The URL of a webpage that describes in a human-readable format the criteria for the credential."
           />
