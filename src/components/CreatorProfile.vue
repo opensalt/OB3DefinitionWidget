@@ -9,7 +9,7 @@ const creatorIs=ref('noCreator');
 
 onBeforeMount(() => {
   if (Object.keys(creator.value).length === 0) {
-    creator.value = 'noCreator';
+    creatorIs.value = 'noCreator';
 
     return;
   }
@@ -32,10 +32,10 @@ onBeforeMount(() => {
           v-model="creatorIs"
           input-class="$reset formkit-input form-select"
           :options="{
-          noCreator: 'Do not add a creator field',
-          organization: 'The creator is an Organization',
-          individual: 'The creator is a Person',
-      }"
+              noCreator: 'Do not add a creator field',
+              organization: 'The creator is an Organization',
+              individual: 'The creator is a Person',
+          }"
           ignore="true"
       />
     </h5>
@@ -52,7 +52,7 @@ onBeforeMount(() => {
           label="ID"
           name="id"
           wrapper-class="required"
-          validation="required:trim"
+          validation="uri:required:trim"
           help="Unique URI for the creator."
           />
 

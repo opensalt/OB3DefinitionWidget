@@ -14,6 +14,7 @@ const model = defineModel({ default: {} });
       name="id"
       label="ID"
       v-model="model.id"
+      validation="uri:trim"
       help="Unique URI for the Achievement."
       />
 

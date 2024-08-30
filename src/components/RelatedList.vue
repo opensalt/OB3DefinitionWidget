@@ -54,7 +54,7 @@ watch(related, (newRelated) => {
               inner-class="input-group"
               label-class="input-group-text"
               wrapper-class="required"
-              validation="required:trim"
+              validation="uri:required:trim"
               help="The URI of the related achievement."
           />
 

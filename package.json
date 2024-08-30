@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "markdown-it": "^14.1.0",
+    "uri-js": "^4.4.1",
     "uuid": "^10.0.0",
     "vue": "^3.4.29"
   },

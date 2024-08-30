@@ -44,7 +44,7 @@ const results = defineModel({ default: [] });
               inner-class="input-group"
               label-class="input-group-text"
               wrapper-class="required"
-              validation="required:trim"
+              validation="uri:required:trim"
               help="The unique URI for this result description. Required so a result can link to this result description."
           />
 

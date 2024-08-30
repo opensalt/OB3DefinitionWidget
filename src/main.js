@@ -10,6 +10,7 @@ import customConfig from '../formkit.config.js';
 import { innerLabelTextInput } from '@/inputs/innerLabelTextInput.js';
 import { innerLabelTextareaInput } from '@/inputs/innerLabelTextareaInput.js';
 import { selectInputGroup } from '@/inputs/selectInputGroup.js';
+import uri from "@/validation/uri.js";
 
 const createDefiner = (el, props) => {
     const app = createApp(App, props);
@@ -19,6 +20,9 @@ const createDefiner = (el, props) => {
             innerLabelTextInput,
             innerLabelTextareaInput,
             selectInputGroup,
+        },
+        rules: {
+            uri,
         },
     }));
     return app;
