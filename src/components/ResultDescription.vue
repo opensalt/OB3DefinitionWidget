@@ -3,6 +3,7 @@ import AlignmentComponent from "@/components/AlignmentComponent.vue";
 import ValueList from "@/components/ValueList.vue";
 import CriterionLevels from "@/components/CriterionLevels.vue";
 import ResultType from "@/components/ResultType.vue";
+import { v4 as uuidV4 } from "uuid";
 
 const results = defineModel({ default: [] });
 </script>
@@ -16,7 +17,7 @@ const results = defineModel({ default: [] });
       dynamic
   >
     <h5 class="mb-4">Result Descriptions
-      <button type="button" @click="() => node.input(value.concat({}))" class="btn btn-sm btn-primary ms-3">
+      <button type="button" @click="() => node.input(value.concat({id: 'urn:uuid:'+uuidV4()}))" class="btn btn-sm btn-primary ms-3">
         Add Result Description
       </button>
     </h5>
