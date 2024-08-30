@@ -97,6 +97,10 @@ function removeEmpty(obj) {
 }
 
 function save(formData) {
+  if (!formData.image.id) {
+    formData.image = null;
+  }
+  //console.log('formData', formData);
   const cleaned = removeEmpty(formData);
   //emit('saveDefinition', cleaned);
   const formEl = document.getElementById(form.value.node.props.id);
