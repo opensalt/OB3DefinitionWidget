@@ -43,6 +43,9 @@ window.addEventListener('ob3-open', function(event) {
             props.achievement = JSON.stringify(event.detail.achievement);
         }
     }
+    if (event.detail?.submitText) {
+        props.submitText = event.detail.submitText;
+    }
     const app = createDefiner(selector, props);
     app.mount(selector);
     window.addEventListener('ob3-close', function close() {

@@ -22,6 +22,10 @@ JSON string in an attribute called `data-achievement` on the placeholder
 div or by adding the JSON (as a string or JSON object) to the detail of the
 ob3-open event as the property `achievement`.
 
+To change the default submit button text of "Save", pass the desired
+text in an attribute called `data-submit-text` on the placeholder div
+or by adding the property `submitText` to the detail of the ob3-open event.
+
 **Note** that the widget does not require the `id` field to be entered
 in order for the widget to consider the definition *valid* as many use
 cases will require specific types of ids (such as a known URL created

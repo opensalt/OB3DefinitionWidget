@@ -9,6 +9,10 @@ const props = defineProps({
   achievement: {
     type: String,
     default: ""
+  },
+  submitText: {
+    type: String,
+    default: "Save"
   }
 });
 const emit = defineEmits(['saveDefinition']);
@@ -179,7 +183,7 @@ function showErrors(node) {
             v-show="tab === 'additional'"
         />
 
-        <button class="btn btn-primary float-end mt-5" type="submit" :disabled="false">Save</button>
+        <button class="btn btn-primary float-end mt-5" type="submit" :disabled="false">{{ submitText }}</button>
       </FormKit>
     </div>
   </div>

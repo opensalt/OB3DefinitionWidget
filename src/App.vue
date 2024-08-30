@@ -5,13 +5,17 @@ const props = defineProps({
   achievement: {
     type: String,
     default: ""
+  },
+  submitText: {
+    type: String,
+    default: "Save"
   }
 });
 </script>
 
 <template>
   <div class="container">
-    <AchievementDefiner :achievement="achievement"/>
+    <AchievementDefiner :achievement="achievement" :submit-text="submitText"/>
   </div>
 </template>
 
