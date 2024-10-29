@@ -1,4 +1,6 @@
 <script setup>
+import AlignmentType from "@/components/AlignmentType.vue";
+
 const alignment = defineModel({ default: {} });
 </script>
 
@@ -87,47 +89,7 @@ const alignment = defineModel({ default: {} });
               help="If applicable, a locally unique string identifier that identifies the alignment target within its framework and/or targetUrl."
           />
 
-          <FormKit
-              type="selectInputGroup"
-              label="Alignment Type"
-              name="targetType"
-              inner-class="input-group"
-              label-class="input-group-text"
-              input-class="$reset formkit-input form-select"
-              placeholder="Target Type"
-              :options="{
-                '': '',
-                'CFItem': 'CFItem',
-                'CFRubric': 'CFRubric',
-                'CFRubricCriterion': 'CFRubricCriterion',
-                'CFRubricCriterionLevel': 'CFRubricCriterionLevel',
-                'ceasn:Competency': 'ceasn:Competency',
-                'ceterms:Credential': 'ceterms:Credential',
-                'CTDL': 'CTDL',
-                'other': 'Other (ext:)',
-              }"
-              help="The type of the alignment target node."
-          >
-            <template #suffix>
-                <FormKit
-                    v-if="value[index].targetType === 'other'"
-                    type="innerLabelTextInput"
-                    label="Extended Type"
-                    name="typeExt"
-                    aria-label="Extended Alignment Type"
-                    inner-class="input-group ms-3 me-5 pe-3"
-                    outer-class="$reset"
-                    label-class="visually-hidden"
-                    before="ext:"
-                    :validation="[['matches', '/^[a-z|A-Z|0-9|.|-|_]+$/']]"
-                    placeholder="Name of extended type"
-                >
-                  <template #prefix>
-                    <span class="input-group-text" id="extended-prefix" aria-label="ext:">ext:</span>
-                  </template>
-                </FormKit>
-            </template>
-          </FormKit>
+          <AlignmentType v-model="alignment[index].targetType" />
         </div>
       </div>
     </FormKit>

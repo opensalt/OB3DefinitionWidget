@@ -40,10 +40,16 @@ watch(typeExt, (value) => {
 
 <template>
   <FormKit
+    type="hidden"
+    name="achievementType"
+    v-model="model"
+  />
+  <FormKit
       type="select"
       label="Credential Type"
       v-model="achievementType"
-      name="achievementType"
+      name="achievementTypeInput"
+      ignore="true"
       input-class="$reset formkit-input form-select"
       inner-class=""
       placeholder="Select the Credential Type"
@@ -90,6 +96,7 @@ watch(typeExt, (value) => {
       label="Extended Type"
       v-model="typeExt"
       name="typeExt"
+      ignore="true"
       aria-label="Extended Alignment Type"
       inner-class="input-group ms-3 me-5 pe-3"
       outer-class="$reset"
