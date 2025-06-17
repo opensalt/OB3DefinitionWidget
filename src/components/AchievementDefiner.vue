@@ -33,7 +33,9 @@ const achievementData = reactive({});
 
 onBeforeMount(() => {
   try {
-    const achievement = JSON.parse(props.achievement);
+    const achievement = JSON.parse(JSON.stringify(JSON.parse(props.achievement), (key, value) => {
+      return value == null ? undefined : value;
+    }));
 
     formData.basic = {
       name: achievement.name || '',
@@ -69,6 +71,7 @@ onBeforeMount(() => {
      */
   } catch (e) {
     // No valid OB3 Achievement definition was passed
+    console.log('Error parsing passed achievement: ', e);
   }
 });
 
