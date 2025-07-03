@@ -1,11 +1,14 @@
 {
   "name": "@opensalt/ob3-definer",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/opensalt/OB3DefinitionWidget.git"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "description": "A widget to create an Open Badge achievement definition.",
   "main": "dist/ob3-definer.js",

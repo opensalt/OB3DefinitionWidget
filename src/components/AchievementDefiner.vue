@@ -163,7 +163,7 @@ function showErrors(node) {
         <FormKit
             type="hidden"
             name="@context"
-            :value="[ 'https://www.w3.org/2018/credentials/v2', 'https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json' ]"
+            :value="[ 'https://www.w3.org/ns/credentials/v2', 'https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json' ]"
         />
 
         <FormKit

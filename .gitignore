@@ -7,12 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+tmp
 node_modules
 .DS_Store
 #dist
 dist-ssr
 coverage
 *.local
+
+NOTES
 
 /cypress/videos/
 /cypress/screenshots/
