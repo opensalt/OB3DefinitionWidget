@@ -56,6 +56,7 @@ watch(related, (newRelated) => {
               wrapper-class="required"
               validation="uri:required:trim"
               help="The URI of the related achievement."
+              spellcheck="false"
           />
 
           <FormKit

@@ -2,6 +2,9 @@
 import AlignmentType from "@/components/AlignmentType.vue";
 
 const alignment = defineModel({ default: {} });
+const props = defineProps({
+  title: {type: String, default: 'Alignments'}
+});
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const alignment = defineModel({ default: {} });
       name="alignment"
       dynamic
   >
-    <h5>Alignments
+    <h5>{{ title }}
       <button type="button" @click="() => node.input(value.concat({}))" class="btn btn-sm btn-primary ms-3">
         Add Alignment
       </button>

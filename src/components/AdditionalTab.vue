@@ -16,6 +16,7 @@ const model = defineModel({ default: {} });
       v-model="model.id"
       validation="uri:trim"
       help="Unique URI for the Achievement."
+      spellcheck="false"
       />
 
     <TagList v-model="model.tag"/>

@@ -16,7 +16,7 @@ const results = defineModel({ default: [] });
       v-model="results"
       dynamic
   >
-    <h5 class="mb-4">Result Descriptions
+    <h5 class="">Result Descriptions
       <button type="button" @click="() => node.input(value.concat({id: 'urn:uuid:'+uuidV4()}))" class="btn btn-sm btn-primary ms-3">
         Add Result Description
       </button>
@@ -46,6 +46,7 @@ const results = defineModel({ default: [] });
               wrapper-class="required"
               validation="uri:required:trim"
               help="The unique URI for this result description. Required so a result can link to this result description."
+              spellcheck="false"
           />
 
           <FormKit
@@ -107,7 +108,7 @@ const results = defineModel({ default: [] });
               help="A value from `allowedValue` or within the range of `valueMin` to `valueMax` required to pass as determined by the achievement creator."
           />
 
-          <AlignmentComponent v-model="results[index].alignment"/>
+          <AlignmentComponent v-model="results[index].alignment" :title="'Alignments for Result Description '+(index + 1 )"/>
         </div>
       </div>
     </FormKit>

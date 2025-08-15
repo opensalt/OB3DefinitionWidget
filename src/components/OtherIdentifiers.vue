@@ -53,6 +53,7 @@ const identifiers = defineModel({ default: [] });
               label-class="input-group-text"
               wrapper-class="required"
               validation="required:trim"
+              spellcheck="false"
           />
           <FormKit
               type="selectInputGroup"
@@ -98,6 +99,7 @@ const identifiers = defineModel({ default: [] });
               label-class="visually-hidden"
               before="ext:"
               :validation="[['matches', '/^[a-z|A-Z|0-9|.|-|_]+$/']]"
+              spellcheck="false"
           >
             <template #prefix>
               <span class="input-group-text" aria-label="ext:">ext:</span>

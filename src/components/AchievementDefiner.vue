@@ -33,7 +33,7 @@ const achievementData = reactive({});
 
 onBeforeMount(() => {
   try {
-    const achievement = JSON.parse(JSON.stringify(JSON.parse(props.achievement), (key, value) => {
+    const achievement = JSON.parse(JSON.stringify(JSON.parse(props.achievement || '{}'), (key, value) => {
       return value == null ? undefined : value;
     }));
 

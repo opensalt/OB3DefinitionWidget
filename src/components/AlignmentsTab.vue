@@ -7,9 +7,11 @@ const model = defineModel({ default: {} });
 
 <template>
     <div class="tab-pane fade show active" id="tab-alignments" role="tabpanel" aria-labelledby="alignments-tab">
-      <ResultDescription v-model="model.resultDescription"/>
+      <AlignmentsComponent v-model="model.alignment" title="Badge Alignments" />
 
-      <AlignmentsComponent v-model="model.alignment"/>
+      <hr />
+
+      <ResultDescription v-model="model.resultDescription"/>
     </div>
 </template>
 
